@@ -3,7 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GA_MEASUREMENT_ID = "G-KKQZC4M0JG";
 
 const inter = Inter({
   variable: "--font-inter",
