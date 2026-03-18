@@ -843,21 +843,22 @@ export default function ApplyPage() {
   if (submitSuccess) {
     return (
       <>
-        <div className="pt-32 pb-24 min-h-screen bg-gradient-to-br from-[#f8fafc] to-white">
+        <div className="pt-32 pb-24 min-h-screen relative">
+          <div className="fixed inset-0 bg-gradient-to-br from-[#f8fafc] via-white to-[#f0f7fc] -z-10" />
           <div className="max-w-2xl mx-auto px-6 text-center">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-              className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8"
+              className="w-24 h-24 bg-emerald-50 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg shadow-emerald-100"
             >
-              <CheckCircleIcon className="w-12 h-12 text-green-600" />
+              <CheckCircleIcon className="w-12 h-12 text-emerald-500" />
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-3xl md:text-4xl font-[family-name:var(--font-playfair)] text-[#0f172a] mb-4"
+              className="text-3xl md:text-4xl font-[family-name:var(--font-playfair)] font-bold text-[#0a2540] mb-4 tracking-[-0.02em]"
             >
               Application Submitted Successfully
             </motion.h1>
@@ -865,7 +866,7 @@ export default function ApplyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-gray-600 mb-8"
+              className="text-gray-500 mb-10 text-lg leading-relaxed"
             >
               Thank you for your application. Our team will review your information and contact you within 24-48 business hours.
             </motion.p>
@@ -874,7 +875,7 @@ export default function ApplyPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               href="/"
-              className="inline-block px-8 py-3 bg-[#0f79be] text-white font-medium rounded hover:bg-[#0b5e96] transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[#0f79be] text-white font-semibold rounded-xl hover:bg-[#0b5e96] transition-all duration-300 shadow-lg shadow-[#0f79be]/25 hover:shadow-[#0f79be]/40 hover:-translate-y-0.5 cursor-pointer"
             >
               Return to Home
             </motion.a>
@@ -885,83 +886,99 @@ export default function ApplyPage() {
   }
 
   // Input class helper
-  const inputClass = "w-full min-h-[44px] px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-colors";
-  const selectClass = "w-full min-h-[44px] px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-colors bg-white";
-  const labelClass = "block text-sm font-medium text-gray-700 mb-2";
+  const inputClass = "w-full min-h-[44px] px-4 py-3 border border-gray-200 rounded-xl bg-gray-50/50 focus:bg-white focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-all duration-200 text-[#0a2540] placeholder:text-gray-400";
+  const selectClass = "w-full min-h-[44px] px-4 py-3 border border-gray-200 rounded-xl bg-gray-50/50 focus:bg-white focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-all duration-200 text-[#0a2540] cursor-pointer";
+  const labelClass = "block text-sm font-semibold text-[#0a2540] mb-2";
 
   return (
     <>
-      <div className="pt-24 pb-16 bg-gradient-to-br from-[#f8fafc] to-white min-h-screen">
+      <div className="pt-24 pb-16 min-h-screen relative">
+        {/* Background */}
+        <div className="fixed inset-0 bg-gradient-to-br from-[#f8fafc] via-white to-[#f0f7fc] -z-10" />
+        <div className="fixed top-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full opacity-[0.04] -z-10" style={{
+          background: 'radial-gradient(circle, rgba(15,121,190,0.8) 0%, transparent 70%)',
+        }} />
+
         <div className="max-w-3xl mx-auto px-6">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="text-center mb-10"
           >
-            <Link href="/">
+            <Link href="/" className="cursor-pointer inline-block">
               <Image
                 src="/prud-cap-logo.png"
                 alt="Prudential Capital"
-                width={260}
-                height={78}
-                className="h-18 w-auto mx-auto mb-4"
+                width={240}
+                height={72}
+                className="h-14 w-auto mx-auto mb-5"
               />
             </Link>
-            <h1 className="text-2xl md:text-3xl font-[family-name:var(--font-playfair)] text-[#0f172a] mb-2">
+            <h1 className="text-2xl md:text-3xl font-[family-name:var(--font-playfair)] font-bold text-[#0a2540] mb-2 tracking-[-0.02em]">
               Business Funding Application
             </h1>
+            <p className="text-sm text-gray-500">Complete the form below to get started</p>
           </motion.div>
 
           {/* Progress Steps */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-8 bg-white rounded-2xl p-4 shadow-sm border border-gray-100"
+          >
+            {/* Progress bar */}
+            <div className="h-1.5 bg-gray-100 rounded-full mb-4 overflow-hidden">
+              <motion.div
+                className="h-full bg-gradient-to-r from-[#0f79be] to-[#5eb8e8] rounded-full"
+                initial={{ width: '0%' }}
+                animate={{ width: `${((currentStep - 1) / (STEPS.length - 1)) * 100}%` }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </div>
+            <div className="flex items-center justify-between">
               {STEPS.map((step, index) => (
-                <div key={step.id} className="flex items-center">
+                <div key={step.id} className="flex flex-col items-center">
                   <button
                     onClick={() => goToStep(step.id)}
                     disabled={step.id > currentStep}
                     className={`
-                      w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-all
+                      w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold transition-all duration-300 cursor-pointer
                       ${step.id < currentStep
-                        ? 'bg-[#0f79be] text-white cursor-pointer hover:bg-[#0b5e96]'
+                        ? 'bg-[#0f79be] text-white shadow-sm shadow-[#0f79be]/30 hover:bg-[#0b5e96]'
                         : step.id === currentStep
-                          ? 'bg-[#0f172a] text-white'
-                          : 'bg-gray-200 text-gray-500 cursor-not-allowed'}
+                          ? 'bg-[#0a2540] text-white shadow-sm'
+                          : 'bg-gray-100 text-gray-400 cursor-not-allowed'}
                     `}
                   >
-                    {step.id < currentStep ? '\u2713' : step.id}
+                    {step.id < currentStep ? (
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                    ) : step.id}
                   </button>
-                  {index < STEPS.length - 1 && (
-                    <div
-                      className={`h-1 w-4 md:w-8 lg:w-12 mx-1 rounded ${
-                        step.id < currentStep ? 'bg-[#0f79be]' : 'bg-gray-200'
-                      }`}
-                    />
-                  )}
+                  <span
+                    className={`text-center text-[10px] mt-1.5 font-medium transition-colors hidden sm:block ${
+                      step.id === currentStep ? 'text-[#0a2540]' : step.id < currentStep ? 'text-[#0f79be]' : 'text-gray-400'
+                    }`}
+                  >
+                    {step.shortTitle}
+                  </span>
                 </div>
               ))}
             </div>
-            <div className="flex justify-between text-xs text-gray-500 px-1">
-              {STEPS.map((step) => (
-                <span
-                  key={step.id}
-                  className={`text-center w-12 ${step.id === currentStep ? 'text-[#0f172a] font-medium' : ''}`}
-                >
-                  {step.shortTitle}
-                </span>
-              ))}
-            </div>
-          </div>
+          </motion.div>
 
           {/* Error Display */}
           {stepErrors[currentStep]?.length > 0 && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
+              className="mb-6 p-4 bg-red-50/80 border border-red-100 rounded-2xl"
             >
-              <p className="text-red-700 font-medium mb-2">Please fix the following errors:</p>
+              <p className="text-red-800 font-semibold mb-2 text-sm">Please fix the following:</p>
               <ul className="list-disc list-inside text-red-600 text-sm space-y-1">
                 {stepErrors[currentStep].map((error, i) => (
                   <li key={i}>{error}</li>
@@ -974,10 +991,12 @@ export default function ApplyPage() {
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3"
+              className="mb-6 p-4 bg-red-50/80 border border-red-100 rounded-2xl flex items-start gap-3"
             >
-              <XMarkIcon className="w-5 h-5 text-red-600" />
-              <p className="text-red-700">{submitError}</p>
+              <div className="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <XMarkIcon className="w-4 h-4 text-red-600" />
+              </div>
+              <p className="text-red-700 text-sm">{submitError}</p>
             </motion.div>
           )}
 
@@ -989,12 +1008,12 @@ export default function ApplyPage() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
-              className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8"
+              className="bg-white rounded-2xl shadow-lg shadow-black/[0.03] border border-gray-100/80 p-6 md:p-8"
             >
               {/* Step 1: Funding Request */}
               {currentStep === 1 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-[#0f172a] mb-6">
+                  <h2 className="text-xl font-bold text-[#0a2540] mb-6 tracking-[-0.01em]">
                     {STEPS[0].title}
                   </h2>
                   <div className="space-y-6">
@@ -1041,7 +1060,7 @@ export default function ApplyPage() {
               {/* Step 2: Business Information */}
               {currentStep === 2 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-[#0f172a] mb-6">
+                  <h2 className="text-xl font-bold text-[#0a2540] mb-6 tracking-[-0.01em]">
                     {STEPS[1].title}
                   </h2>
                   <div className="space-y-6">
@@ -1089,7 +1108,7 @@ export default function ApplyPage() {
                           <select
                             value={formData.businessPhoneCountry}
                             onChange={(e) => handleInputChange('businessPhoneCountry', e.target.value)}
-                            className="px-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] bg-white"
+                            className="px-3 py-3 border border-gray-200 rounded-xl bg-gray-50/50 focus:bg-white focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-all duration-200 cursor-pointer"
                           >
                             {COUNTRY_CODES.map((c) => (
                               <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
@@ -1195,7 +1214,7 @@ export default function ApplyPage() {
               {/* Step 3: Primary Owner */}
               {currentStep === 3 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-[#0f172a] mb-6">
+                  <h2 className="text-xl font-bold text-[#0a2540] mb-6 tracking-[-0.01em]">
                     {STEPS[2].title}
                   </h2>
                   <div className="space-y-6">
@@ -1293,7 +1312,7 @@ export default function ApplyPage() {
                           <select
                             value={formData.ownerPhoneCountry}
                             onChange={(e) => handleInputChange('ownerPhoneCountry', e.target.value)}
-                            className="px-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] bg-white"
+                            className="px-3 py-3 border border-gray-200 rounded-xl bg-gray-50/50 focus:bg-white focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-all duration-200 cursor-pointer"
                           >
                             {COUNTRY_CODES.map((c) => (
                               <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
@@ -1366,7 +1385,7 @@ export default function ApplyPage() {
               {/* Step 4: Additional Owners */}
               {currentStep === 4 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-[#0f172a] mb-6">
+                  <h2 className="text-xl font-bold text-[#0a2540] mb-6 tracking-[-0.01em]">
                     {STEPS[3].title}
                   </h2>
                   <div className="space-y-6">
@@ -1501,7 +1520,7 @@ export default function ApplyPage() {
                               <select
                                 value={formData.secondOwnerPhoneCountry}
                                 onChange={(e) => handleInputChange('secondOwnerPhoneCountry', e.target.value)}
-                                className="px-3 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] bg-white"
+                                className="px-3 py-3 border border-gray-200 rounded-xl bg-gray-50/50 focus:bg-white focus:ring-2 focus:ring-[#0f79be]/20 focus:border-[#0f79be] transition-all duration-200 cursor-pointer"
                               >
                                 {COUNTRY_CODES.map((c) => (
                                   <option key={c.code} value={c.code}>{c.flag} {c.code}</option>
@@ -1576,7 +1595,7 @@ export default function ApplyPage() {
               {/* Step 5: Financial Details */}
               {currentStep === 5 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-[#0f172a] mb-6">
+                  <h2 className="text-xl font-bold text-[#0a2540] mb-6 tracking-[-0.01em]">
                     {STEPS[4].title}
                   </h2>
                   <div className="space-y-6">
@@ -1854,7 +1873,7 @@ export default function ApplyPage() {
               {/* Step 8: Review & Sign */}
               {currentStep === 8 && (
                 <div>
-                  <h2 className="text-xl font-semibold text-[#0f172a] mb-6">
+                  <h2 className="text-xl font-bold text-[#0a2540] mb-6 tracking-[-0.01em]">
                     {STEPS[7].title}
                   </h2>
 
@@ -1963,10 +1982,10 @@ export default function ApplyPage() {
               onClick={prevStep}
               disabled={currentStep === 1}
               className={`
-                flex min-h-[44px] items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition-colors
+                flex min-h-[44px] items-center justify-center gap-2 px-7 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer
                 ${currentStep === 1
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'}
+                  ? 'bg-gray-50 text-gray-300 cursor-not-allowed'
+                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 hover:border-gray-300 shadow-sm'}
               `}
             >
               <ChevronLeftIcon className="w-5 h-5" />
@@ -1978,7 +1997,7 @@ export default function ApplyPage() {
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="flex min-h-[44px] items-center justify-center gap-2 px-8 py-3 bg-[#0f79be] text-white font-medium rounded-lg hover:bg-[#0b5e96] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex min-h-[44px] items-center justify-center gap-2.5 px-10 py-3.5 bg-[#0f79be] text-white font-semibold rounded-xl hover:bg-[#0b5e96] transition-all duration-300 shadow-lg shadow-[#0f79be]/25 hover:shadow-[#0f79be]/40 hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-lg cursor-pointer"
               >
                 {isSubmitting ? (
                   <>
@@ -1996,7 +2015,7 @@ export default function ApplyPage() {
               <button
                 type="button"
                 onClick={nextStep}
-                className="flex min-h-[44px] items-center justify-center gap-2 px-6 py-3 bg-[#0f172a] text-white font-medium rounded-lg hover:bg-[#1e293b] transition-colors"
+                className="flex min-h-[44px] items-center justify-center gap-2 px-8 py-3 bg-[#0a2540] text-white font-semibold rounded-xl hover:bg-[#1e293b] transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer"
               >
                 Continue
                 <ChevronRightIcon className="w-5 h-5" />

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.prudentialcap.com)",
+      "Bash(find /c/Users/reece/Documents/NunezDev/goldman-financial -name \"tailwind.config.*\" -o -name \".env*\" 2>/dev/null | head -5)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(where python:*)",
+      "Bash(where python3:*)",
+      "Bash(C:/Python314/python.exe \"C:/Users/reece/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"fintech business lending capital professional premium\" --design-system -p \"Prudential Capital\" 2>&1)",
+      "mcp__magic__21st_magic_component_builder",
+      "mcp__magic__21st_magic_component_inspiration"
+    ]
+  }
+}
