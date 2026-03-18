@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,6 +32,7 @@ export const metadata: Metadata = {
     "Las Vegas business loans",
   ],
   authors: [{ name: "Prudential Capital" }],
+  metadataBase: new URL("https://www.prudentialcap.com"),
   openGraph: {
     title: "Prudential Capital | Business Loans Made Simple",
     description:
@@ -36,6 +40,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Prudential Capital",
+    url: "https://www.prudentialcap.com",
+    images: [
+      {
+        url: "/prud-cap-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Prudential Capital",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -70,6 +83,44 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
+        {GA_MEASUREMENT_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_MEASUREMENT_ID}');
+              `}
+            </Script>
+          </>
+        )}
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FinancialService",
+              name: "Prudential Capital",
+              description:
+                "Fast, flexible business funding solutions from $2,000 to $2,000,000.",
+              url: "https://www.prudentialcap.com",
+              logo: "https://www.prudentialcap.com/prud-cap-logo.png",
+              areaServed: "US",
+              serviceType: [
+                "Working Capital Loans",
+                "Business Line of Credit",
+                "Equipment Financing",
+              ],
+              priceRange: "$2,000 - $2,000,000",
+            }),
+          }}
+        />
         {children}
       </body>
     </html>
