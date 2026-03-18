@@ -55,6 +55,11 @@ export const metadata: Metadata = {
     title: "Prudential Capital | Business Loans Made Simple",
     description:
       "Fast, flexible business funding from $2,000 to $2,000,000. Same-day approvals, funding in 24 hours.",
+    images: ["/prud-cap-logo.png"],
+  },
+  icons: {
+    icon: "/icon-logo.png",
+    apple: "/icon-logo.png",
   },
   robots: {
     index: true,
