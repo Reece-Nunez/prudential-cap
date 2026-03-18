@@ -467,7 +467,7 @@ function Services() {
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <FadeInSection key={service.title} delay={index * 0.15}>
-              <div className="gradient-border group relative h-full bg-white rounded-2xl border border-gray-100 p-8 hover:shadow-2xl hover:shadow-[#0f79be]/[0.08] transition-all duration-500 cursor-pointer hover:-translate-y-1">
+              <div className="gradient-border group relative h-full bg-white rounded-2xl border border-gray-100 p-8 hover:shadow-2xl hover:shadow-[#0f79be]/[0.08] transition-all duration-500 hover:-translate-y-1">
                 {/* Icon */}
                 <div className={`w-14 h-14 bg-gradient-to-br ${service.gradient} rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-[#0f79be]/20 group-hover:scale-105 transition-transform duration-500`}>
                   <service.icon className="w-7 h-7 text-white" />
@@ -492,11 +492,6 @@ function Services() {
                   ))}
                 </ul>
 
-                {/* Hover arrow */}
-                <div className="mt-6 pt-6 border-t border-gray-100 flex items-center gap-2 text-[#0f79be] font-medium text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  Learn more
-                  <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
               </div>
             </FadeInSection>
           ))}
